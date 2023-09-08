@@ -1,0 +1,82 @@
+<div class="div">
+    <div class="card">
+        <div class="modal-header">
+            <h5 class="modal-title">{{title}}</h5>
+            <button type="button" class="btn-close" (click)="modal.close()" aria-label="Close"></button>
+        </div>
+
+        <div class="card-body">
+
+            <form [formGroup]="formSearch">
+                <div class="mb-3">
+                    <label for="ide" class="form-label">Pokemon code</label>
+                    <input type="number" formControlName="ide"
+                    placeholder="Enter the pokemon code"
+                    class="form-control" id="ide">
+                </div>
+
+                <div class="mb-3">
+                    <button type="button" (click)="onSubmit()" [disabled]="!formSearch.valid"
+                        class="btn btn-primary">Consultar</button>
+                </div>
+
+            </form>
+
+            <form [formGroup]="form"  *ngIf="data" >
+       
+                <div class="mb-3">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Information of the pokemon</h3>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <!-- <label for="name" class="form-label">Image</label> -->
+                            <div>
+                                <img [src]="data?.image" alt="pokemon image" class="pokemon-image">
+                            </div>
+                          
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" formControlName="description" class="form-control" id="description">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="height" class="form-label">Height</label>
+                            <input type="number" formControlName="height" class="form-control" id="height">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="weight" class="form-label">Weight</label>
+                            <input type="number" formControlName="weight" class="form-control" id="weight">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="button" (click)="onSave()" [disabled]="!form.valid"
+                                class="btn btn-primary">Save</button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+
+            <div *ngIf="!data">
+                <p>{{messageFlag}}</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
